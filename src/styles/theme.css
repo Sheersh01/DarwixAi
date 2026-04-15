@@ -1,7 +1,11 @@
 @custom-variant dark (&:is(.dark *));
 
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700&display=swap");
+
 :root {
   --font-size: 16px;
+  --font-sans: "Manrope", "Segoe UI", sans-serif;
+  --font-display: "Sora", "Avenir Next", "Segoe UI", sans-serif;
   --background: #ffffff;
   --foreground: oklch(0.145 0 0);
   --card: #ffffff;
@@ -126,6 +130,28 @@
 
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-sans);
+    background:
+      radial-gradient(
+        circle at 15% -10%,
+        rgba(56, 189, 248, 0.18),
+        transparent 40%
+      ),
+      radial-gradient(
+        circle at 95% 15%,
+        rgba(251, 191, 36, 0.16),
+        transparent 35%
+      ),
+      linear-gradient(180deg, #f7fafc 0%, #edf3f9 100%);
+    min-height: 100vh;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
   }
 
   /**
@@ -177,5 +203,56 @@
     font-size: var(--text-base);
     font-weight: var(--font-weight-normal);
     line-height: 1.5;
+  }
+}
+
+@layer components {
+  .app-shell {
+    background:
+      linear-gradient(
+        130deg,
+        rgba(255, 255, 255, 0.8),
+        rgba(244, 249, 255, 0.65)
+      ),
+      repeating-linear-gradient(
+        45deg,
+        rgba(15, 23, 42, 0.01),
+        rgba(15, 23, 42, 0.01) 2px,
+        transparent 2px,
+        transparent 8px
+      );
+  }
+
+  .glass-card {
+    border: 1px solid rgba(255, 255, 255, 0.65);
+    background: rgba(255, 255, 255, 0.76);
+    box-shadow: 0 16px 34px rgba(15, 23, 42, 0.08);
+    backdrop-filter: blur(10px);
+  }
+
+  .lift {
+    transition:
+      transform 260ms ease,
+      box-shadow 260ms ease;
+  }
+
+  .lift:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 24px rgba(14, 116, 144, 0.2);
+  }
+
+  .fade-in-up {
+    animation: fade-in-up 700ms cubic-bezier(0.2, 0.65, 0.3, 1) both;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
